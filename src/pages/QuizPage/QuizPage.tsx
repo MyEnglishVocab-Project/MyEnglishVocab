@@ -4,6 +4,7 @@ import { useProfile } from '../../context/ProfileContext';
 import { useNavigate } from 'react-router-dom';
 import styles from './QuizPage.module.css';
 import HomeButton from '../../components/HomeButton/HomeButton';
+import { deleteWord, getWords, updateWord } from '../../api/client';
 
 const QuizPage: React.FC = () => {
   const { selectedProfile } = useProfile();
@@ -20,19 +21,20 @@ const QuizPage: React.FC = () => {
     }
 
     if (!isWordsLoaded.current){
-      fetch(`http://localhost:3001/words?profileId=${selectedProfile.id}`)
-      .then(res => res.json())
-      .then((data: Word[]) => {
-        const shuffled = shuffleArray(data);
-        setWords(shuffled);
-        isWordsLoaded.current = true;
-      })
-      .catch(err => console.error(err));
+      getWords(selectedProfile.id)
+        .then((data) => {
+          const shuffled = shuffleArray(data);
+          setWords(shuffled);
+          isWordsLoaded.current = true;
+        })
+        .catch((err) => console.error(err));
     }
     return () => {
       isWordsLoaded.current = false;
     };
   }, [selectedProfile, navigate]);
+
+  const currentWord = words[currentIndex];
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -43,7 +45,7 @@ const QuizPage: React.FC = () => {
           handleShowDefinition();
         }
       }
-      if(event.key === 'Enter' && showDefinition){
+      if(event.key === 'Enter' && showDefinition && currentWord){
         if(window.confirm(`The level of "${currentWord.term}" increases to ${currentWord.level + 1}`)){
           handleMarkAsLearned();
         }
@@ -53,20 +55,16 @@ const QuizPage: React.FC = () => {
       }
     };
 
-    // 이벤트 리스너 추가
     window.addEventListener('keydown', handleKeyDown);
-
-    // 클린업: 컴포넌트 언마운트 시 이벤트 리스너 제거
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [currentIndex, words, showDefinition]);
+  }, [currentIndex, words, showDefinition, currentWord]);
 
   const handleDelete = async (id: number) => {
     setShowDefinition(false);
     try{
-      const response = await fetch(`http://localhost:3001/words/${id}`, { method: 'DELETE' });
-      if (!response.ok) throw new Error('단어 삭제 실패');
+      await deleteWord(id);
       setWords(prev => prev.filter(word => word.id !== id));
     } catch (error){
       console.error(error);
@@ -88,19 +86,13 @@ const QuizPage: React.FC = () => {
     const word = words[currentIndex];
 
     try {
-      const updatedWord = { ...word, level: word.level + 1 };
+      const updatedWordData = { ...word, level: word.level + 1 };
 
-      const response = await fetch(`http://localhost:3001/words/${word.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedWord),
-      });
-
-      if (!response.ok) throw new Error('Level 업데이트 실패');
+      const savedWord = await updateWord(word.id, updatedWordData);
 
       // 단어 목록 업데이트
       setWords((prev) =>
-        prev.map((w) => (w.id === word.id ? updatedWord : w))
+        prev.map((w) => (w.id === word.id ? savedWord : w))
       );
 
     } catch (error) {
@@ -128,8 +120,6 @@ const QuizPage: React.FC = () => {
       </div>
     );
   }
-
-  const currentWord = words[currentIndex];
 
   return (
     <div className={styles.container}>

@@ -5,12 +5,13 @@ import styles from './MainPage.module.css';
 import LogoutButton from '../../components/LogoutButton/LogoutButton';
 import { Word } from '../../types/Word';
 import DeleteAccountButton from '../../components/DeleteAccountButton/DeleteAccountButton';
+import { getWords } from '../../api/client';
 
 const MainPage: React.FC = () => {
   const [words, setWords] = useState<Word[]>([]);
   const { selectedProfile } = useProfile();
   const navigate = useNavigate();
-  const [isLodading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!selectedProfile) {
@@ -18,13 +19,12 @@ const MainPage: React.FC = () => {
       return;
     };
 
-    fetch(`http://localhost:3001/words?profileId=${selectedProfile.id}`)
-      .then(res => res.json())
-      .then((data: Word[]) => {
+    getWords(selectedProfile.id)
+      .then((data) => {
         setWords(data);
         setIsLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
         setIsLoading(false);
       });
@@ -34,7 +34,7 @@ const MainPage: React.FC = () => {
     return null;
   }
 
-  if (isLodading) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
