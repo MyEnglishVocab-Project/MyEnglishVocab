@@ -110,15 +110,6 @@
       "meaningOfExampleSentence": "경영진은 새로운 제품 라인의 출시를 발표했습니다."
     },
     {
-      "id": "4917",
-      "profileId": 1,
-      "term": "commuting",
-      "definition": "출퇴근",
-      "level": 2,
-      "exampleSentence": "Her daily commuting takes more than an hour each way.",
-      "meaningOfExampleSentence": "그녀의 일일 출퇴근은 편도로 한 시간이 넘습니다."
-    },
-    {
       "id": "ab65",
       "profileId": 1,
       "term": "commence",
@@ -308,15 +299,6 @@
       "meaningOfExampleSentence": "직원 유지는 우리 회사 성공의 핵심 요인입니다."
     },
     {
-      "id": "7de1",
-      "profileId": "1",
-      "term": "lease",
-      "definition": "임대",
-      "level": 4,
-      "exampleSentence": "We signed a one-year lease for the new apartment.",
-      "meaningOfExampleSentence": "우리는 새 아파트에 대해 1년 임대 계약을 체결했습니다."
-    },
-    {
       "id": "4a7d",
       "profileId": "1",
       "term": "operation",
@@ -477,15 +459,6 @@
       "level": 0,
       "exampleSentence": "She affirmed her support for the new policy during the meeting.",
       "meaningOfExampleSentence": "그녀는 회의 중에 새로운 정책에 대한 지지를 확인했습니다."
-    },
-    {
-      "id": "a051",
-      "profileId": "1",
-      "term": "benefit",
-      "definition": "혜택, 자선행사",
-      "level": 0,
-      "exampleSentence": "Regular exercise provides numerous health benefits.",
-      "meaningOfExampleSentence": "규칙적인 운동은 수많은 건강상의 이점을 제공합니다."
     },
     {
       "id": "3b35",
@@ -675,15 +648,6 @@
       "level": 0,
       "exampleSentence": "I cannot tolerate excessive noise while I work.",
       "meaningOfExampleSentence": "나는 일하는 동안 지나친 소음을 견딜 수 없습니다."
-    },
-    {
-      "id": "010c",
-      "profileId": "1",
-      "term": "withdraw",
-      "definition": "인출하다",
-      "level": 0,
-      "exampleSentence": "He decided to withdraw his application after reconsidering his options.",
-      "meaningOfExampleSentence": "그는 선택지를 재고한 후 지원서를 철회하기로 결정했습니다."
     },
     {
       "id": "ae2b",
@@ -1028,33 +992,6 @@
       "meaningOfExampleSentence": "이 소프트웨어는 복잡한 명령어를 빠르게 실행하도록 설계되었습니다."
     },
     {
-      "id": "460e",
-      "profileId": "1",
-      "term": "generate",
-      "definition": "발생시키다",
-      "level": 0,
-      "exampleSentence": "This engine can generate enough power for the entire building.",
-      "meaningOfExampleSentence": "이 엔진은 건물 전체에 충분한 전력을 발생시킬 수 있습니다."
-    },
-    {
-      "id": "37ed",
-      "profileId": "1",
-      "term": "roadwork",
-      "definition": "도로공사",
-      "level": 0,
-      "exampleSentence": "Roadwork is scheduled to begin early next week on Main Street.",
-      "meaningOfExampleSentence": "메인 스트리트에서 도로공사가 다음 주 초에 시작될 예정입니다."
-    },
-    {
-      "id": "a026",
-      "profileId": "1",
-      "term": "expend",
-      "definition": "(시간, 노력) 소비하다",
-      "level": 0,
-      "exampleSentence": "She did not want to expend too much energy on trivial matters.",
-      "meaningOfExampleSentence": "그녀는 사소한 일에 너무 많은 에너지를 소비하고 싶지 않았습니다."
-    },
-    {
       "id": "940f",
       "profileId": "1",
       "term": "affiliate",
@@ -1294,6 +1231,114 @@
       "definition": "알아내다",
       "exampleSentence": "An inquiry was set up to determine the cause of the accident",
       "meaningOfExampleSentence": "그 사고의 원인을 밝히기 위한 조사단이 발족되었다",
+      "profileId": "1",
+      "level": 0
+    },
+    {
+      "id": "781a",
+      "term": "amid",
+      "definition": "가운데에",
+      "exampleSentence": "He finished his speech amid tremendous applause",
+      "meaningOfExampleSentence": "그는 엄청난 박수가 쏟아지는 가운데 연설을 마쳤다",
+      "profileId": "1",
+      "level": 0
+    },
+    {
+      "id": "b67c",
+      "term": "contrary to",
+      "definition": "~와는 다른",
+      "exampleSentence": "Contrary to popular belief, many cats dislike milk",
+      "meaningOfExampleSentence": "일반적인 믿음과는 반대로 많은 고양이들이 우유를 싫어한다",
+      "profileId": "1",
+      "level": 0
+    },
+    {
+      "id": "9f6a",
+      "term": "on behalf of",
+      "definition": "~을 대표[대신]하여",
+      "exampleSentence": "On behalf of the department I would like to thank you all",
+      "meaningOfExampleSentence": "부서를 대표하여 여러분 모두에게 감사를 드리고 싶습니다",
+      "profileId": "1",
+      "level": 0
+    },
+    {
+      "id": "2e6a",
+      "term": "regardless of",
+      "definition": "~에 상관없이",
+      "exampleSentence": "The club welcomes all new members regardless of age",
+      "meaningOfExampleSentence": "본 클럽에서는 나이에 상관없이 모든 신입 회원들을 환영합니다",
+      "profileId": "1",
+      "level": 0
+    },
+    {
+      "id": "187c",
+      "term": "identical to",
+      "definition": "~와 동일한",
+      "exampleSentence": "Her dress is almost identical to mine",
+      "meaningOfExampleSentence": "그녀의 드레스는 내 것과 거의 똑같다",
+      "profileId": "1",
+      "level": 0
+    },
+    {
+      "id": "f85b",
+      "term": "consistent with",
+      "definition": "~와 일치하는",
+      "exampleSentence": "injuries consistent with a fall from an upper storey",
+      "meaningOfExampleSentence": "위층에서 굴러 떨어질 때 생기는 것과 일치하는 부상",
+      "profileId": "1",
+      "level": 0
+    },
+    {
+      "id": "7a3a",
+      "term": "pedestrian",
+      "definition": "보행자",
+      "exampleSentence": "Pedestrian accidents are down by 5%",
+      "meaningOfExampleSentence": "보행자 사고가 5% 감소했다",
+      "profileId": "1",
+      "level": 0
+    },
+    {
+      "id": "537f",
+      "term": "convince",
+      "definition": "설득하다, 확신하다",
+      "exampleSentence": "She utterly failed to convince them",
+      "meaningOfExampleSentence": "그녀는 그들을 납득시키는 데 완전히 실패했다",
+      "profileId": "1",
+      "level": 0
+    },
+    {
+      "id": "4e32",
+      "term": "vulnerable",
+      "definition": "취약한",
+      "exampleSentence": "She was left feeling exposed and vulnerable",
+      "meaningOfExampleSentence": "그녀는 노출되고 취약한 위치에 있다는 기분을 갖게 되었다",
+      "profileId": "1",
+      "level": 0
+    },
+    {
+      "id": "439c",
+      "term": "absent from",
+      "definition": "~에 불참하는",
+      "exampleSentence": "Love was totally absent from his childhood",
+      "meaningOfExampleSentence": "그의 어린 시절엔 애정이 완전 부재했다",
+      "profileId": "1",
+      "level": 0
+    },
+    {
+      "id": "107f",
+      "term": "consecutive",
+      "definition": "연이은",
+      "exampleSentence": "She was absent for nine consecutive days",
+      "meaningOfExampleSentence": "그녀는 연이어 9일 동안 결석[결근] 중이었다",
+      "profileId": "1",
+      "level": 0
+    },
+    {
+      "id": "1028",
+      "term": "renovation",
+      "definition": "수리, 수선",
+      "exampleSentence": "The museum has been closed for renovation",
+      "meaningOfExampleSentence": "그 박물관은 수리를 위해 문을 닫았다.",
       "profileId": "1",
       "level": 0
     }

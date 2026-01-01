@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProfile } from '../../context/ProfileContext';
+import { createProfile } from '../../api/client'; // API 함수 임포트
 import styles from './CreateProfilePage.module.css';
 
 const CreateProfilePage: React.FC = () => {
@@ -15,20 +16,9 @@ const CreateProfilePage: React.FC = () => {
       return;
     }
 
-    const newProfile = {
-      name: profileName.trim(),
-    };
-
     try {
-      const response = await fetch('http://localhost:3001/profiles', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newProfile),
-      });
+      const createdProfile = await createProfile(profileName.trim());
 
-      if (!response.ok) throw new Error('프로필 생성 실패');
-
-      const createdProfile = await response.json();
       addProfile(createdProfile);
       navigate('/main');
     } catch (error) {

@@ -6,12 +6,12 @@ import ActionDelButton from '../ActionButtons/ActionDelButton';
 
 interface ShowWordsProps {
   words: Word[];
-  editingId: string | null;
+  editingId: number | null;
   editingTerm: string;
   editingDefinition: string;
-  onDelete: (id: string) => void;
-  onDeleteStart: (id: string) => void;
-  deletingId: string | null;
+  onDelete: (id: number) => void;
+  onDeleteStart: (id: number) => void;
+  deletingId: number | null;
   onEditStart: (word: Word) => void;
   onEditTermChange: (value: string) => void;
   onEditDefinitionChange: (value: string) => void;

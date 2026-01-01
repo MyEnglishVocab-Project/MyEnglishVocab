@@ -62,7 +62,7 @@ const QuizPage: React.FC = () => {
     };
   }, [currentIndex, words, showDefinition]);
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: number) => {
     setShowDefinition(false);
     try{
       const response = await fetch(`http://localhost:3001/words/${id}`, { method: 'DELETE' });

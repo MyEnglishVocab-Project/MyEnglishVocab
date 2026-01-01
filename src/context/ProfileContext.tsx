@@ -1,6 +1,6 @@
 import React, { createContext, useState, ReactNode, useContext, useEffect } from 'react';
 import { Profile } from '../types/Profile';
-import { Word } from '../types/Word';
+import { getProfiles, deleteProfile as apiDeleteProfile } from '../api/client';
 
 interface ProfileContextProps {
   profiles: Profile[];
@@ -19,10 +19,9 @@ export const ProfileProvider: React.FC<{ children: ReactNode }> = ({ children })
 
   useEffect(() => {
     // 백엔드에서 프로필 목록을 가져오기
-    fetch('http://localhost:3001/profiles')
-      .then((response) => response.json())
+    getProfiles()
       .then((data: Profile[]) => setProfiles(data))
-      .catch((error) => console.error(error));
+      .catch((error) => console.error('프로필 목록 불러오기 실패', error));
   }, []);
 
   const addProfile = (profile: Profile) => {
@@ -35,24 +34,11 @@ export const ProfileProvider: React.FC<{ children: ReactNode }> = ({ children })
 
   const deleteProfile = async (profileId: number) => {
     try {
-      const response = await fetch(`http://localhost:3001/profiles/${profileId}`, { method: 'DELETE' });
-      if (!response.ok) throw new Error('프로필 삭제 실패');
+      await apiDeleteProfile(profileId);
 
-      const wordsResponse = await fetch(`http://localhost:3001/words?profileId=${profileId}`);
-      if (!wordsResponse.ok){
-        throw new Error('단어 목록 불러오기 실패');
-      } else {
-        const words: Word[] = await wordsResponse.json();
-        const deletePromises = words.map(word =>
-          fetch(`http://localhost:3001/words/${word.id}`, { method: 'DELETE' })
-        );
-        await Promise.all(deletePromises);
-      }
-      
-      
       setProfiles((prev) => prev.filter((profile) => profile.id !== profileId));
 
-      if(selectedProfile && selectedProfile.id === profileId) {
+      if(selectedProfile && selectedProfile.id === profileId){
         logout();
       }
     } catch (error) {

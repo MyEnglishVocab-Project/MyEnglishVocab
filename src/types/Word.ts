@@ -1,5 +1,5 @@
 export interface Word {
-    id: string;
+    id: number;
     profileId: number;
     term: string;
     definition: string;

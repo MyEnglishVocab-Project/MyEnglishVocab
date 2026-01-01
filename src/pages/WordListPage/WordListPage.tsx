@@ -7,14 +7,15 @@ import ShowWords from '../../components/ShowWords/ShowWords';
 import ExampleModal from './ExampleModal/ExampleModal';
 import { useProfile } from '../../context/ProfileContext';
 import { useNavigate } from 'react-router-dom';
+import { getWords, createWord, deleteWord, updateWord } from '../../api/client';
 
 const WordListPage: React.FC = () => {
   const { selectedProfile } = useProfile();
   const [words, setWords] = useState<Word[]>([]);
-  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editingId, setEditingId] = useState<number | null>(null);
   const [editingTerm, setEditingTerm] = useState('');
   const [editingDefinition, setEditingDefinition] = useState('');
-  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
   const [isSortedAsc, setIsSortedAsc] = useState<boolean>(true);
   const [modalWord, setModalWord] = useState<Word | null>(null); // 모달에 표시할 단어
   const navigate = useNavigate();
@@ -26,34 +27,22 @@ const WordListPage: React.FC = () => {
     }
 
     // 선택된 프로필의 단어 목록을 가져오기
-    fetch(`http://localhost:3001/words?profileId=${selectedProfile.id}`)
-      .then((response) => response.json())
-      .then((data) => setWords(data as Word[]))
+    getWords(selectedProfile.id)
+      .then((data) => setWords(data))
       .catch((err) => console.error(err));
   }, [selectedProfile, navigate]);
 
   const handleAddWord = async (term: string, definition: string, exampleSentence: string, meaningOfExampleSentence: string) => {
     if (!selectedProfile) return;
 
-    const newWord = {
-      term: term.trim(),
-      definition: definition.trim(),
-      exampleSentence: exampleSentence.trim(),
-      meaningOfExampleSentence: meaningOfExampleSentence.trim(),
-      profileId: selectedProfile.id,
-      level: 0,
-    };
-
     try {
-      const response = await fetch('http://localhost:3001/words', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newWord),
+      const createdWord = await createWord(selectedProfile.id, {
+        term: term.trim(),
+        definition: definition.trim(),
+        exampleSentence: exampleSentence.trim(),
+        meaningOfExampleSentence: meaningOfExampleSentence.trim(),
+        level: 0,
       });
-
-      if (!response.ok) throw new Error('단어 추가 실패');
-
-      const createdWord = await response.json();
       setWords((prev) => [...prev, createdWord]);
     } catch (error) {
       console.error(error);
@@ -61,7 +50,7 @@ const WordListPage: React.FC = () => {
     }
   };
 
-  const handleDeleteStart = (id: string) => {
+  const handleDeleteStart = (id: number) => {
     setDeletingId(id);
   };
 
@@ -69,10 +58,9 @@ const WordListPage: React.FC = () => {
     setDeletingId(null);
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:3001/words/${id}`, { method: 'DELETE' });
-      if (!response.ok) throw new Error('단어 삭제 실패');
+      await deleteWord(id);
       setWords((prev) => prev.filter((word) => word.id !== id));
       setDeletingId(null);
     } catch (error) {
@@ -96,23 +84,19 @@ const WordListPage: React.FC = () => {
   const handleEditSave = async () => {
     if (editingId === null || !selectedProfile) return;
 
-    const updatedWord = {
-      term: editingTerm.trim(),
-      definition: editingDefinition.trim(),
-      profileId: selectedProfile.id,
-      level: words.find(w => w.id === editingId)?.level || 0 // 기존 level 유지
-    };
+    // 기존 단어 정보 찾기 (level 유지 등을 위해)
+    const existingWord = words.find(w => w.id === editingId);
+    if (!existingWord) return;
 
     try {
-      const response = await fetch(`http://localhost:3001/words/${editingId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedWord),
+      const savedWord = await updateWord(editingId, {
+        term: editingTerm.trim(),
+        definition: editingDefinition.trim(),
+        level: existingWord.level, // 기존 레벨 유지
+        exampleSentence: existingWord.exampleSentence, // 기존 예문 유지 (폼에 입력칸이 없다면)
+        meaningOfExampleSentence: existingWord.meaningOfExampleSentence
       });
 
-      if (!response.ok) throw new Error('단어 수정 실패');
-
-      const savedWord = await response.json();
       setWords((prev) => prev.map((w) => (w.id === editingId ? savedWord : w)));
       setEditingId(null);
       setEditingTerm('');
