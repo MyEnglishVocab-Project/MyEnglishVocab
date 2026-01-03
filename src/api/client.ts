@@ -3,8 +3,8 @@ import { Profile } from '../types/Profile';
 import { Word } from '../types/Word';
 
 const client = axios.create({
-  // 환경 변수가 있으면 사용하고, 없으면 로컬 주소를 사용합니다.
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api',
+  // 이제 전체 URL 대신 상대 경로인 /api를 사용합니다.
+  baseURL: '/api', 
   headers: {
     'Content-Type': 'application/json',
   },
