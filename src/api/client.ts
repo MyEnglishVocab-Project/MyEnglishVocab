@@ -3,7 +3,7 @@ import { Profile } from '../types/Profile';
 import { Word } from '../types/Word';
 
 const client = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: 'http://54.180.24.42:8080/api',
   headers: {
     'Content-Type': 'application/json',
   },
