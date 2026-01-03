@@ -30,9 +30,14 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  flex-direction: column;
+  /* place-items: center; */
+  align-items: center;
+  justify-content: center;
   /* min-width: 320px; */
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  width: 100dvw;
+  height: 100dvh;
 }
 
 h1 {
@@ -49,6 +54,7 @@ button {
   font-family: inherit;
   /* background-color: #1a1a1a; */
   background-color: #3182F6;
+  color: #fff;
   cursor: pointer;
   /* transition: border-color 0.25s; */
   transition: all 0.25s;
@@ -63,7 +69,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 } */
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -72,6 +78,6 @@ button:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #3182F6;
   }
 }
