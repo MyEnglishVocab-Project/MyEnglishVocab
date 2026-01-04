@@ -18,7 +18,7 @@ interface ShowWordsProps {
   onEditSave: () => void;
   onEditCancel: () => void;
   onDeleteCancel: () => void;
-  onViewExample: (word: Word) => void; // 새로 추가된 prop
+  onViewExample: (word: Word) => void;
 }
 
 const ShowWords: React.FC<ShowWordsProps> = ({

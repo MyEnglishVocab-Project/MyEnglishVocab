@@ -1,0 +1,40 @@
+.container {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.header {
+  height: 10dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navigation {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.backButton {
+  padding: 0.6em 1.2em;
+  border-radius: 8px;
+  background-color: #6b6b6b;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: #2a2a2a;
+}
