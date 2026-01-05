@@ -1,37 +1,35 @@
 .logoutButton {
-  /* 적절한 패딩과 둥근 모서리 */
   padding: 8px 14px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   
-  /* 토스 스타일의 보조 버튼 색상 시스템 */
-  color: #4e5968;       /* 차분한 다크 그레이 */
-  background-color: #f2f4f6; /* 아주 연한 회색 배경 */
+  color: #4e5968;
+  background-color: #f2f4f6;
   
   border: none;
-  border-radius: 10px;  /* 다른 버튼들과 일관성 있는 곡률 */
-  
-  /* 부드러운 상호작용 */
+  border-radius: 10px;
   transition: all 0.2s ease-in-out;
-  
-  /* 버튼 내부 텍스트가 한 줄로 나오도록 고정 */
   white-space: nowrap;
+
+  cursor: pointer;
+  touch-action: manipulation; 
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  
+  position: relative;
+  z-index: 10000;
 }
 
-/* 마우스를 올렸을 때 */
 .logoutButton:hover {
-  background-color: #e5e8eb; /* 살짝 더 진한 회색 */
-  color: #191f28;            /* 글자색은 더 선명하게 */
+  background-color: #e5e8eb;
+  color: #191f28;
 }
 
-/* 버튼을 눌렀을 때 (클릭 피드백) */
 .logoutButton:active {
-  transform: scale(0.96);    /* 살짝 작아지는 효과 */
+  transform: scale(0.96);
   background-color: #d1d6db;
 }
 
-/* 터치 디바이스에서 탭 하이라이트 제거 */
 .logoutButton {
   -webkit-tap-highlight-color: transparent;
 }

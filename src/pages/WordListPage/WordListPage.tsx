@@ -1,7 +1,7 @@
+/* WordListPage.tsx */
 import React, { useEffect, useState, useRef } from 'react';
 import { Word } from '../../types/Word';
 import styles from './WordListPage.module.css';
-import HomeButton from '../../components/HomeButton/HomeButton';
 import ShowWords from '../../components/ShowWords/ShowWords';
 import ExampleModal from './ExampleModal/ExampleModal';
 import { useProfile } from '../../context/ProfileContext';
@@ -27,17 +27,12 @@ const WordListPage: React.FC = () => {
     fetchWords();
   }, [selectedProfile, navigate]);
 
-  // 스크롤 감지 및 상단 버튼 노출 제어
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
     const handleScroll = () => {
-      if (scrollContainer.scrollTop > 300) {
-        setShowTopButton(true);
-      } else {
-        setShowTopButton(false);
-      }
+      setShowTopButton(scrollContainer.scrollTop > 300);
     };
 
     scrollContainer.addEventListener('scroll', handleScroll);
@@ -94,42 +89,36 @@ const WordListPage: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      {/* 헤더 클릭 시 최상단 이동 UX */}
-      <header className={styles.header} onClick={scrollToTop}>
-        <div className={styles.headerLeft}>
-          <BackButton />
-        </div>
-        <h2 className={styles.title}>나의 단어장</h2>
+      <header className={styles.header}>
+        <div className={styles.headerLeft}><BackButton /></div>
+        <h2 className={styles.title} onClick={scrollToTop}>나의 단어장</h2>
         <div className={styles.headerRight} />
       </header>
 
       <main className={styles.main} ref={scrollRef}>
-        <div className={styles.topNavigation}>
-          <button className={styles.addPageButton} onClick={() => navigate('/add-word')}>
-            단어 추가
-          </button>
-          <button onClick={handleSort} className={styles.sortButton}>
-            <img 
-              src={isSortedAsc ? './za.svg' : './az.svg'} 
-              alt='sort' 
-              className={styles.sortIcon}
-            />
-          </button>
+        <div className={styles.topSection}>
+          <div className={styles.infoText}>
+            총 <strong>{words.length}개</strong>의 단어가 있어요
+          </div>
+          <div className={styles.actionGroup}>
+            <button onClick={handleSort} className={styles.iconButton}>
+              <img src={isSortedAsc ? './za.svg' : './az.svg'} alt="sort" />
+            </button>
+            <button className={styles.addButton} onClick={() => navigate('/add-word')}>
+              추가
+            </button>
+          </div>
         </div>
 
         <div className={styles.listCard}>
           <ShowWords words={words} onWordClick={(word) => setModalWord(word)} />
         </div>
 
-        {/* Floating 상단 이동 버튼 */}
         <button 
           className={`${styles.scrollTopButton} ${showTopButton ? styles.visible : ''}`}
-          onClick={(e) => {
-            e.stopPropagation();
-            scrollToTop();
-          }}
+          onClick={scrollToTop}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <polyline points="18 15 12 9 6 15"></polyline>
           </svg>
         </button>

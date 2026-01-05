@@ -14,7 +14,7 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     if (!selectedProfile) {
-      navigate('/');
+      navigate('/', { replace: true }); // replace를 사용하여 히스토리를 깔끔하게 관리
       return;
     };
 
@@ -27,6 +27,38 @@ const MainPage: React.FC = () => {
         console.error(err);
         setIsLoading(false);
       });
+  }, [selectedProfile, navigate]);
+
+  useEffect(() => {
+    // bfcache(뒤로가기 캐시) 대응 로직
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) {
+        // 캐시로부터 복원되었다면 위치를 새로고침하거나 상태를 재확인
+        window.location.reload(); 
+        // 만약 전체 새로고침이 싫다면, 최소한 로그아웃 버튼의 렌더링을 트리거해야 합니다.
+      }
+    };
+
+    window.addEventListener('pageshow', handlePageShow);
+    
+    if (!selectedProfile) {
+      navigate('/', { replace: true });
+      return;
+    };
+
+    getWords(selectedProfile.id)
+      .then((data) => {
+        setWords(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setIsLoading(false);
+      });
+
+    return () => {
+      window.removeEventListener('pageshow', handlePageShow);
+    };
   }, [selectedProfile, navigate]);
 
   if(!selectedProfile) {
@@ -43,7 +75,7 @@ const MainPage: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      {/* 상단 헤더: 로그아웃 버튼 배치 */}
+      {/* 상단 헤더 섹션 */}
       <header className={styles.header}>
         <div className={styles.headerLeft}>
           <span className={styles.logo}>MyVocab</span>
@@ -75,7 +107,7 @@ const MainPage: React.FC = () => {
           <p className={styles.cardFooter}>꾸준히 하는 모습이 멋져요!</p>
         </div>
 
-        {/* 메인 메뉴 버튼 */}
+        {/* 메인 메뉴 버튼 섹션 */}
         <div className={styles.menuSection}>
           <Link to="/words" className={styles.menuLink}>
             <button className={styles.myWordsButton}>
@@ -83,7 +115,12 @@ const MainPage: React.FC = () => {
                 <span className={styles.buttonTitle}>나의 단어장</span>
                 <span className={styles.buttonDesc}>저장한 단어 확인하기</span>
               </div>
-              <span className={styles.arrow}>&gt;</span>
+              {/* 토스 스타일 셰브론 아이콘 */}
+              <div className={styles.arrow}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
             </button>
           </Link>
 
@@ -93,7 +130,12 @@ const MainPage: React.FC = () => {
                 <span className={styles.buttonTitle}>단어 테스트</span>
                 <span className={styles.buttonDesc}>실력 뽐내기</span>
               </div>
-              <span className={styles.arrow}>&gt;</span>
+              {/* 토스 스타일 셰브론 아이콘 */}
+              <div className={styles.arrow}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
             </button>
           </Link>
         </div>

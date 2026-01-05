@@ -17,7 +17,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: transparent; /* 메인은 헤더를 투명하게 */
+  background-color: transparent;
+
+  position: relative;
+  z-index: 9999;
+  pointer-events: auto;
 }
 
 .logo {
@@ -32,6 +36,9 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+
+  position: relative;
+  z-index: 1;
 }
 
 /* 인사말 스타일 */
@@ -159,16 +166,24 @@
 /* 나의 단어장 버튼 글자색 */
 .myWordsButton .buttonTitle { color: #191f28; }
 .myWordsButton .buttonDesc { color: #8b91a1; }
-.myWordsButton .arrow { color: #b0b8c1; }
+.myWordsButton .arrow { 
+  color: #B0B8C1; /* 부드러운 회색 */
+}
 
 /* 단어 테스트 버튼 글자색 */
 .quizButton .buttonTitle { color: #ffffff; }
 .quizButton .buttonDesc { color: rgba(255, 255, 255, 0.8); }
-.quizButton .arrow { color: #ffffff; }
+.quizButton .arrow { 
+  color: rgba(255, 255, 255, 0.9); /* 투명도가 살짝 들어간 화이트 */
+}
 
 .arrow {
-  font-size: 18px;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
 }
 
 /* 터치 효과 */
@@ -180,6 +195,11 @@
 .quizButton:active {
   background-color: #2563eb;
   transform: scale(0.98);
+}
+
+.myWordsButton:active .arrow, 
+.quizButton:active .arrow {
+  transform: translateX(2px);
 }
 
 /* 로딩 스피너 */
