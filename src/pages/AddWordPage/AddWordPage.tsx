@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useProfile } from '../../context/ProfileContext';
 import { createWord } from '../../api/client';
 import AddWordForm from '../../components/AddWordForm/AddWordForm';
-import HomeButton from '../../components/HomeButton/HomeButton';
 import styles from './AddWordPage.module.css';
 
 const AddWordPage: React.FC = () => {
