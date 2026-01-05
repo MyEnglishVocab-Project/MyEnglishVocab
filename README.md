@@ -50,3 +50,5 @@ export default tseslint.config({
 ```
 # Word List App
 # Vocabulary App
+
+organization 구축
