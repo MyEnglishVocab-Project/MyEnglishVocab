@@ -33,7 +33,7 @@ const AddWordPage: React.FC = () => {
       });
       
       alert('단어가 추가되었습니다.');
-      navigate('/words');
+      navigate('/words', { replace: true });
     } catch (error) {
       console.error(error);
       alert('단어 추가 중 오류가 발생했습니다.');

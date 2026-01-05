@@ -11,7 +11,7 @@ const ProfileSelectionPage: React.FC = () => {
     const profile = profiles.find(p => p.id === profileId);
     if (profile) {
       setSelectedProfile(profile);
-      navigate('/main');
+      navigate('/main', { replace: true });
     }
   };
 

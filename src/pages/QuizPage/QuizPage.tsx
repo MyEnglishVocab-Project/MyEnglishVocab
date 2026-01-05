@@ -130,7 +130,7 @@ const QuizPage: React.FC = () => {
             <div className={styles.resultButtonGroup}>
               <button 
                 className={styles.resultConfirmButton} 
-                onClick={() => navigate('/main')}
+                onClick={() => navigate('/main', { replace: true })}
               >
                 확인
               </button>
