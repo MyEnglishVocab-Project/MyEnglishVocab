@@ -1,0 +1,16 @@
+.backButton {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+  /* 터치 영역 확보를 위해 살짝 큰 패딩 */
+  margin-left: -8px; 
+}
+
+.backButton:active {
+  opacity: 0.3; /* 클릭 시 살짝 투명해지는 토스 스타일 피드백 */
+}

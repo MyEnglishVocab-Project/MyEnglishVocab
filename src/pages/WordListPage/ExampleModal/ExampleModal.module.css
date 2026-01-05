@@ -1,37 +1,146 @@
 /* ExampleModal.module.css */
 
 .modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100dvw;
-    height: 100dvh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-  }
-  
-  .modalContent {
-    width: 90dvw;
-    height: 350px;
-    background-color: #D5DAE3;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .closeButton {
-    margin-top: 15px;
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modalContent {
+  width: 100%;
+  max-width: 400px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f2f4f6;
+  padding-bottom: 15px;
+}
+
+.termTitle {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #191f28;
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #8B91A1;
+  text-align: left;
+}
+
+.text {
+  font-size: 16px;
+  color: #333d4b;
+  margin: 0;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.subText {
+  font-size: 14px;
+  color: #6b7684;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* iOS 확대 방지 트릭 */
+.inputWrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.editInput, .editTextarea {
+  width: 111.1%;
+  padding: 12px;
+  border: 1px solid #E5E8EB;
+  border-radius: 10px;
+  font-size: 16px; /* iOS 기준 */
+  background-color: #F9FAFB;
+  outline: none;
+  transform: scale(0.9);
+  transform-origin: left center;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.editInput:focus, .editTextarea:focus {
+  border-color: #3182f6;
+  background-color: #ffffff;
+}
+
+.editTextarea {
+  min-height: 80px;
+  resize: none;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.editButton, .saveButton {
+  flex: 1;
+  background-color: #3182f6;
+  color: #ffffff;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.editButton:hover, .saveButton:hover { background-color: #2563eb; }
+
+.deleteButton, .cancelButton {
+  flex: 1;
+  background-color: #f2f4f6;
+  color: #4e5968;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.deleteButton:hover, .cancelButton:hover { background-color: #e5e8eb; }
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #8B91A1;
+  text-decoration: underline;
+  font-size: 14px;
+  cursor: pointer;
+  align-self: center;
+  margin-top: 4px;
+}

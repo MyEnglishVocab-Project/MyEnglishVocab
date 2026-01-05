@@ -1,61 +1,145 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .profileList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-    margin-bottom: 30px;
-    margin-top: 5px;
-    max-width: 500px;
-  }
-  
-  /* .profileButton {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: 1px solid #28a745;
-    background-color: white;
-    color: #28a745;
-    border-radius: 6px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .profileButton:hover {
-    background-color: #28a745;
-    color: white;
-  } */
-  .profileButton{
-    width: 120px;
-    height: 115px;
-    font-size: 17px;
-  }
-  
-  /* .createButton {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: 1px solid #007bff;
-    background-color: white;
-    color: #007bff;
-    border-radius: 6px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .createButton:hover {
-    background-color: #007bff;
-    color: white;
-  } */
-  
-  .createButton{
-    background-color: rgb(100, 100, 100);
-    font-size: 15px;
-  }
-  .createButton:hover{
-    background-color: rgb(75, 75, 75);
-  }
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: #F9FAFB;
+  position: fixed;
+  inset: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f2f4f6;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #191f28;
+  margin: 0;
+}
+
+.main {
+  flex: 1;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+/* 안내 문구 섹션 */
+.welcomeSection {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.greeting {
+  font-size: 28px;
+  font-weight: 700;
+  color: #191f28;
+  margin: 0;
+}
+
+.subGreeting {
+  font-size: 16px;
+  color: #4e5968;
+  margin-top: 10px;
+}
+
+/* 프로필 그리드 레이아웃 */
+.profileGrid {
+  width: 100%;
+  max-width: 500px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2열 배치 */
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+/* 프로필 카드 스타일 */
+.profileCard {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 프로필 아바타 (첫 글자 동그라미) */
+.avatar {
+  width: 60px;
+  height: 60px;
+  background-color: #e8f3ff;
+  color: #3182f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.profileName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333d4b;
+}
+
+/* 카드 터치 효과 */
+.profileCard:active {
+  transform: scale(0.96);
+  background-color: #f2f4f6;
+}
+
+/* 데이터 없을 때 */
+.emptyState {
+  grid-column: span 2;
+  padding: 40px 0;
+  color: #8b91a1;
+  font-size: 15px;
+}
+
+/* 새 프로필 만들기 버튼 (하단 고정 느낌) */
+.createButton {
+  width: 100%;
+  max-width: 500px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #4e5968;
+  background-color: #ffffff;
+  border: 1px solid #e5e8eb;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: auto; /* 가능한 한 아래로 배치 */
+}
+
+.createButton:hover {
+  background-color: #f9fafb;
+}
+
+.createButton:active {
+  background-color: #f2f4f6;
+  transform: scale(0.98);
+}
+
+/* 스크롤바 숨기기 */
+.main::-webkit-scrollbar { display: none; }
+.main { scrollbar-width: none; }

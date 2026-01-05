@@ -10,7 +10,6 @@ const AddWordPage: React.FC = () => {
   const { selectedProfile } = useProfile();
   const navigate = useNavigate();
 
-  // 프로필이 없으면 초기 화면으로 리디렉션
   React.useEffect(() => {
     if (!selectedProfile) {
       navigate('/');
@@ -34,7 +33,6 @@ const AddWordPage: React.FC = () => {
         level: 0,
       });
       
-      // 추가 완료 후 단어 목록 페이지로 이동
       alert('단어가 추가되었습니다.');
       navigate('/words');
     } catch (error) {
@@ -48,22 +46,23 @@ const AddWordPage: React.FC = () => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h2 className={styles.title}>Add New Word</h2>
+        <h2 className={styles.title}>단어 추가</h2>
       </header>
 
-      <div className={styles.navigation}>
-        <HomeButton />
-        <button 
-          className={styles.backButton} 
-          onClick={() => navigate('/words')}
-        >
-          목록으로 돌아가기
-        </button>
-      </div>
-
-      <div className={styles.formContainer}>
-        <AddWordForm onAddWord={handleAddWord} />
-      </div>
+      <main className={styles.main}>
+        <section className={styles.formSection}>
+          <div className={styles.formCard}>
+            <AddWordForm onAddWord={handleAddWord} />
+          </div>
+          
+          <div 
+            className={styles.backButton} 
+            onClick={() => navigate(-1)}
+          >
+            단어장 목록으로 돌아가기
+          </div>
+        </section>
+      </main>
     </div>
   );
 };

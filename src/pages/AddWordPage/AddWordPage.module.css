@@ -3,38 +3,100 @@
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
+  background-color: #F9FAFB; /* 토스 표준 배경색 */
+  position: fixed;
+  inset: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+/* 상단 헤더 스타일 */
 .header {
-  height: 10dvh;
+  height: 60px; /* 고정된 높이 */
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f2f4f6;
+  z-index: 10;
 }
 
-.navigation {
+.headerLeft, .headerRight {
+  flex: 1;
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
 }
 
-.backButton {
-  padding: 0.6em 1.2em;
-  border-radius: 8px;
-  background-color: #6b6b6b;
-  color: white;
-  border: none;
-  cursor: pointer;
+.headerRight {
+  justify-content: flex-end;
 }
 
-.formContainer {
-  width: 100%;
-  max-width: 600px;
-  border: 1px solid #ccc;
-  border-radius: 12px;
+.title {
+  flex: 2;
+  font-size: 18px;
+  font-weight: 700;
+  color: #191f28;
+  margin: 0;
+  text-align: center;
+}
+
+/* 메인 컨텐츠 영역 */
+.main {
+  flex: 1;
+  overflow-y: auto;
   padding: 20px;
-  background-color: #2a2a2a;
+  display: flex;
+  justify-content: center;
+  /* iOS 스크롤 탄성 효과 */
+  -webkit-overflow-scrolling: touch;
+}
+
+.formSection {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 카드 디자인 */
+.formCard {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 24px; /* 더 둥글게 처리하여 모던한 느낌 */
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04); /* 아주 은은한 그림자 */
+  box-sizing: border-box;
+}
+
+/* 하단 돌아가기 버튼 */
+.backButton {
+  margin-top: 32px;
+  margin-bottom: 40px;
+  background: none; /* 배경 없음 */
+  border: none;
+  color: #6b7684; /* 토스 그레이 텍스트 */
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: opacity 0.2s; /* 배경 대신 투명도로 피드백 (선택 사항) */
+}
+
+/* 호버나 클릭 시 배경이 진해지지 않도록 설정 */
+.backButton:hover {
+  background-color: transparent; /* 배경색 변화 제거 */
+  color: #4e5968; /* 글자색만 살짝 진하게 하여 텍스트 링크 느낌 강조 */
+}
+
+.backButton:active {
+  background-color: transparent; /* 클릭 시 배경색 변화 제거 */
+  opacity: 0.7; /* 배경 대신 아주 살짝 투명해지는 효과로 클릭감 제공 */
+}
+
+/* 스크롤바 숨기기 */
+.main::-webkit-scrollbar {
+  display: none;
+}
+.main {
+  scrollbar-width: none;
 }

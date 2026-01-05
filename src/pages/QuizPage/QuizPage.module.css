@@ -1,75 +1,327 @@
+/* QuizPage.module.css */
+
+/* 전체 컨테이너 */
 .container {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: #F9FAFB;
+  position: fixed;
+  inset: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* 상단 헤더 */
+.header {
+  height: 60px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  z-index: 10;
+}
+
+.headerLeft, .headerRight { flex: 1; display: flex; }
+.headerRight { justify-content: flex-end; }
+
+.title {
+  flex: 2;
+  font-size: 18px;
+  font-weight: 700;
+  color: #191f28;
+  margin: 0;
+  text-align: center;
+}
+
+/* 프로그레스 바 */
+.progressBarContainer {
+  width: 100%;
+  height: 4px;
+  background-color: #f2f4f6;
+}
+
+.progressBar {
+  height: 100%;
+  background-color: #3182f6;
+  transition: width 0.3s ease-out;
+}
+
+/* 메인 퀴즈 영역 */
+.main {
+  flex: 1;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.quizInfo {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.counter {
+    font-size: 14px;
+    color: #8b91a1;
+    font-weight: 500;
+}
+
+.levelBadge {
+    font-size: 13px;
+    font-weight: 600;
+    color: #3182f6;
+    background-color: #e8f3ff;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+.quizCard {
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 32px 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+}
+
+.term {
+  font-size: 32px;
+  font-weight: 700;
+  color: #191f28;
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+
+.exampleSection label, .infoRow label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #8b91a1;
+    display: block;
+    margin-bottom: 6px;
+    text-align: left;
+}
+
+.exampleSection p {
+    font-size: 16px;
+    color: #4e5968;
+    line-height: 1.6;
+    margin: 0;
+    text-align: left;
+}
+
+.divider {
+    height: 1px;
+    background-color: #f2f4f6;
+    margin: 24px 0;
+}
+
+.infoRow { margin-bottom: 20px; }
+
+.definitionText {
+    font-size: 18px;
+    font-weight: 600;
+    color: #3182f6;
+    margin: 0;
+    text-align: left;
+}
+
+.exampleMeaning {
+    font-size: 15px;
+    color: #6b7684;
+    margin: 0;
+    text-align: left;
+}
+
+/* 하단 버튼 영역 */
+.footer {
+  padding: 20px;
+  background-color: #ffffff;
+  border-top: 1px solid #f2f4f6;
+}
+
+.buttonGroup {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  gap: 12px;
+}
+
+.primaryButton, .secondaryButton {
+  flex: 1;
+  height: 56px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.primaryButton { background-color: #3182f6; color: #ffffff; }
+.secondaryButton { background-color: #f2f4f6; color: #4e5968; }
+.primaryButton:active, .secondaryButton:active { transform: scale(0.98); }
+
+.correctIcon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.deleteIconButton {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.deleteIconButton img { width: 20px; height: 20px; }
+
+.loadingContainer {
+    width: 100%;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    margin: 0px auto;
+    justify-content: center;
+    background-color: #F9FAFB;
+    gap: 16px;
 }
 
-.quizArea {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    width: 570px;
-    height: 270px;
-    /* min-height: 100px; */
-    text-align: center;
-    margin-bottom: 20px;
-}
-.quizArea p{
-    font-size: 17px;
-    /* line-height: 100%; */
-}
-.quizArea p:first-child{
-    margin-top: 0px;
-    font-size: 15px;
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f2f4f6;
+    border-top: 4px solid #3182f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 
-.learnedButton{
-    background-color: transparent;
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    padding-top: 3px;
-}
-.learnedButton:hover{
-    transform: scale(1.1);
-    background-color: transparent;
-}
-.correctSVG{
-    width: 20px;
-    height: 20px;
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-.buttons {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+/* =========================================
+   테스트 완료(결과) 화면 전용 스타일 
+   ========================================= */
+
+.resultMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
 }
 
-.showDefButton, .nextButton, .skipButton {
-    padding: 10px 20px;
-    font-size: 14px;
-    width: 85px;
-    height: 41px;
+.resultContent {
+  flex: 1; /* 상단 여백을 채워서 버튼을 아래로 밀어냄 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* 아이콘과 메시지를 중앙에 배치 */
+  padding: 0 24px;
+  text-align: center;
+  animation: resultSlideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.skipButton {
-    background-color: rgb(110, 110, 110);
-    color: white;
+.resultIconWrapper {
+  font-size: 70px;
+  margin-bottom: 32px;
+  background-color: #f2f4f6;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
 }
 
-.skipButton:hover {
-    background-color: rgb(90, 90, 90);
+.confettiIcon {
+  display: inline-block;
+  animation: resultBounce 1s infinite alternate;
 }
 
-.deleteSVG {
-    width: 18px;
-    height: 18px;
+.resultTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #191f28;
+  margin-bottom: 16px;
 }
-.deleteButton{
-    background-color: rgb(255, 100, 100);
+
+.resultDescription {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #4e5968;
 }
-.deleteButton:hover{
-    background-color: rgb(255, 70, 70);
+
+.highlight { color: #3182f6; font-weight: 700; }
+
+/* 하단 버튼 고정 영역 */
+.resultFooter {
+  padding: 20px 24px 40px 24px; /* 아래쪽 여백을 넉넉히 주어 안정감 확보 */
+  background-color: #ffffff;
+}
+
+.resultButtonGroup {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.resultConfirmButton {
+  width: 100%;
+  height: 56px; 
+  background-color: #3182f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 18px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.resultConfirmButton:active {
+  background-color: #2563eb;
+  transform: scale(0.98);
+}
+
+.resultTextButton {
+  background: none;
+  border: none;
+  color: #8b91a1;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@keyframes resultSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes resultBounce {
+  from { transform: translateY(0) scale(1); }
+  to { transform: translateY(-10px) scale(1.1); }
 }

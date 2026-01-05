@@ -8,12 +8,19 @@ const LogoutButton: React.FC = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout(); // 로그아웃 함수 호출
-    navigate('/'); // 프로필 선택 화면으로 이동
+    // 사용자에게 한 번 더 확인하는 과정은 토스에서도 흔히 쓰이는 친절한 UX입니다.
+    if (!window.confirm('로그아웃 하시겠습니까?')) return;
+    
+    logout();
+    navigate('/');
   };
 
   return (
-    <button onClick={handleLogout} className={styles.logoutButton} aria-label="로그아웃">
+    <button 
+      onClick={handleLogout} 
+      className={styles.logoutButton} 
+      aria-label="로그아웃"
+    >
       로그아웃
     </button>
   );

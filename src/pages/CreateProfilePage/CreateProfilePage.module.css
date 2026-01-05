@@ -1,39 +1,158 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .input {
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  
-  .submitButton {
-    padding: 10px 20px;
-    background-color: #28a745;
-  }
-  
-  .submitButton:hover {
-    background-color: #218838;
-  }
-  
-  .backButton {
-    padding: 8px 16px;
-    font-size: 14px;
-    background-color: rgb(110, 110, 110);
-  }
-  
-  .backButton:hover {
-    background-color: rgb(90, 90, 90);
-  }
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: #F9FAFB;
+  position: fixed;
+  inset: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f2f4f6;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #191f28;
+  margin: 0;
+}
+
+.main {
+  flex: 1;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+/* 안내 문구 섹션 */
+.welcomeSection {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 32px;
+  text-align: left; /* 토스 스타일: 왼쪽 정렬 질문 */
+}
+
+.greeting {
+  font-size: 26px;
+  font-weight: 700;
+  color: #191f28;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.subGreeting {
+  font-size: 16px;
+  color: #6b7684;
+  margin-top: 10px;
+}
+
+/* 카드 및 폼 디자인 */
+.formCard {
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #8b91a1;
+  text-align: left;
+}
+
+/* iOS 확대 방지 트릭 */
+.inputWrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.input {
+  width: 111.1%;
+  padding: 14px;
+  border: 1px solid #e5e8eb;
+  border-radius: 12px;
+  font-size: 16px; /* iOS 기준 폰트 */
+  background-color: #f9fafb;
+  outline: none;
+  transform: scale(0.9);
+  transform-origin: left center;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+
+.input:focus {
+  border-color: #3182f6;
+  background-color: #ffffff;
+}
+
+/* 제출 버튼 스타일 */
+.submitButton {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.active {
+  background-color: #3182f6;
+  color: #ffffff;
+}
+
+.disabled {
+  background-color: #e5e8eb;
+  color: #b0b8c1;
+  cursor: not-allowed;
+}
+
+.active:active {
+  transform: scale(0.98);
+  background-color: #2563eb;
+}
+
+/* 돌아가기 버튼 */
+.backButton {
+  margin-top: 32px;
+  background: none;
+  border: none;
+  color: #8b91a1;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 10px;
+}
+
+/* 스크롤바 숨기기 */
+.main::-webkit-scrollbar { display: none; }
+.main { scrollbar-width: none; }
